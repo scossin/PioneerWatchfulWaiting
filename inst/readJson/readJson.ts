@@ -8,7 +8,7 @@ const HEADERS = ["conceptSetId","conceptSetName",
                 "CONCEPT_CODE","INVALID_REASON",
                 "DOMAIN_ID","VOCABULARY_ID",
                 "CONCEPT_CLASS_ID","includeDescendants",
-                "FILENAME"] 
+                "isExcluded","FILENAME"] 
 
 let getConceptSetInfo:(conceptSet:ConceptSets) => string =(conceptSet:ConceptSets) => {
     var lineConceptSet = "";
@@ -28,6 +28,7 @@ let getConceptInfo:(concept:Concept) => string = (concept:Concept) => {
     line += SEP + _concept.VOCABULARY_ID;
     line += SEP + _concept.CONCEPT_CLASS_ID;
     line += SEP + concept.includeDescendants;
+    line += SEP + concept.isExcluded;
     return(line);
 }
 

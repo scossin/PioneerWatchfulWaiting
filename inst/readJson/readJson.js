@@ -8,7 +8,7 @@ var HEADERS = ["conceptSetId", "conceptSetName",
     "CONCEPT_CODE", "INVALID_REASON",
     "DOMAIN_ID", "VOCABULARY_ID",
     "CONCEPT_CLASS_ID", "includeDescendants",
-    "FILENAME"];
+    "isExcluded", "FILENAME"];
 var getConceptSetInfo = function (conceptSet) {
     var lineConceptSet = "";
     lineConceptSet = lineConceptSet + conceptSet.id;
@@ -26,6 +26,7 @@ var getConceptInfo = function (concept) {
     line += SEP + _concept.VOCABULARY_ID;
     line += SEP + _concept.CONCEPT_CLASS_ID;
     line += SEP + concept.includeDescendants;
+    line += SEP + concept.isExcluded;
     return (line);
 };
 var writer = fs.createWriteStream('AtlasConceptSets.tsv', {
