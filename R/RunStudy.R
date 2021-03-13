@@ -385,7 +385,7 @@ zipResults <- function(exportFolder, databaseId) {
 # Per protocol, we will only characterize cohorts with
 # >= 140 subjects to improve efficency
 getMinimumSubjectCountForCharacterization <- function() {
-  return(140)
+  return(20)
 }
 
 getVocabularyInfo <- function(connection, cdmDatabaseSchema, oracleTempSchema) {
