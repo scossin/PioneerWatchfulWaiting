@@ -1,5 +1,12 @@
 -- create subject age table
-DROP TABLE IF EXISTS @cohort_database_schema.subject_age;
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE @cohort_database_schema.subject_age';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;
 CREATE TABLE @cohort_database_schema.subject_age AS
 SELECT tab.cohort_definition_id,
        tab.person_id,
@@ -18,14 +25,29 @@ FROM (
 
 
 -- Charlson analysis
-DROP TABLE IF EXISTS @cohort_database_schema.charlson_concepts;
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE @cohort_database_schema.charlson_concepts';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;
 CREATE TABLE @cohort_database_schema.charlson_concepts
 (
     diag_category_id INT,
     concept_id       INT
 );
 
-DROP TABLE IF EXISTS @cohort_database_schema.charlson_scoring;
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE @cohort_database_schema.charlson_scoring';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;
+
 CREATE TABLE @cohort_database_schema.charlson_scoring
 (
     diag_category_id   INT,
@@ -223,8 +245,14 @@ FROM @cdm_database_schema.concept_ancestor
 WHERE ancestor_concept_id IN (439727);
 
 
-
-DROP TABLE IF EXISTS @cohort_database_schema.charlson_map;
+BEGIN
+   EXECUTE IMMEDIATE 'DROP TABLE @cohort_database_schema.charlson_map';
+EXCEPTION
+   WHEN OTHERS THEN
+      IF SQLCODE != -942 THEN
+         RAISE;
+      END IF;
+END;
 CREATE TABLE @cohort_database_schema.charlson_map AS
 SELECT DISTINCT @cohort_database_schema.charlson_scoring.diag_category_id,
                 @cohort_database_schema.charlson_scoring.weight,
