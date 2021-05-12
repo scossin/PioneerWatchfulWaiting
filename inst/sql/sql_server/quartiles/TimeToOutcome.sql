@@ -14,6 +14,6 @@ WITH tab       AS (
                   GROUP BY t.cohort_definition_id, t.subject_id, t.cohort_start_date
                   ),
      init_data AS (
-                  SELECT cohort_definition_id, datediff(day, tab.cohort_start_date, tab.event_date) AS value
+                  SELECT cohort_definition_id, ROUND(tab.cohort_start_date - tab.event_date, 0) AS value
                   FROM tab
                   ),
